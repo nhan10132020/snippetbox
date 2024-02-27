@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  mysql-db:
+    image: mysql:8.3.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=Yourpassword1
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+  app:
+    build:
+      context: ../app
+      dockerfile: dockerfile
+    restart: unless-stopped
+    environment:
+      - DB_PORT=3306
+      - DB_HOST=mysql-db
+      - DB_DATABASE_NAME=snippetbox
+      - DB_USERNAME=root
+      - DB_PASSWORD=Yourpassword1 
+    ports:
+      - 8080:8080
+
