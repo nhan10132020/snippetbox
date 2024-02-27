@@ -19,3 +19,4 @@ docker compose up -d
 
 The app will be up and running at http://localhost:8080. 
 
+if you want to config -> change any environment in /docker/docker-compose.yaml file
