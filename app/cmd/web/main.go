@@ -50,6 +50,7 @@ func main() {
 	if err != nil {
 		errLog.Fatal(err)
 	}
+	defer sqlDB.Close()
 
 	templateCache, err := newTemplateCache()
 	if err != nil {
